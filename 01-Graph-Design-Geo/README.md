@@ -17,17 +17,12 @@ In the AidData dataset, each row represents a financial transaction between two 
 
 ## Goal
 To create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.
-- **Vis 1:**
-  - How do the countries compare in terms of how much they receive and donate from other countries?
-  - Are there countries that donate much more than they receive or receive much more than they donate?
-- **Vis 2:**
-  - Do the countries that receive or donate the most tend to cluster around specific geographical areas of the world?
-  - Are there neighboring countries that have radically different patterns in terms of how much they receive vs. how much they donate?
 
 # Visualizations
-| Vis 1| Vis 2 |
-| - | - |
-| *Coming Soon* | *Coming Soon* |
+| # | Questions | Visualizations |
+| - | - | - |
+| 1 | <ul><li>How do the countries compare in terms of how much they receive and donate from other countries?</li><li>Are there countries that donate much more than they receive or receive much more than they donate?</li></ul> | *Coming Soon* |
+| 2 | <ul><li>Do the countries that receive or donate the most tend to cluster around specific geographical areas of the world?</li><li>Are there neighboring countries that have radically different patterns in terms of how much they receive vs. how much they donate</li></ul> | *Coming Soon* |
 
 # Running Code
 Code derived from [NYU Info Vis](https://github.com/nyuvis/info-vis-project-template) template.
