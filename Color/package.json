@@ -1,0 +1,14 @@
+{
+  "name": "80992086c9c9d047",
+  "main": "80992086c9c9d047@1080.js",
+  "version": "1080.0.0",
+  "homepage": "https://observablehq.com/d/80992086c9c9d047",
+  "author": {
+    "name": "Mary Karroqe",
+    "url": "https://observablehq.com/@mkarroqe"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
