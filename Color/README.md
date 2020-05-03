@@ -1,4 +1,4 @@
-# Graphical Encoding - Exercise
+# Color - Exercise
 
 Original Observable notebook can be found [here](https://observablehq.com/d/80992086c9c9d047)
 
