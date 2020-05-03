@@ -1,0 +1,123 @@
+<!-- Mary Karroqe
+	 Mini Project 1
+-->
+<!DOCTYPE HTML>
+	<head>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<title>Mini Project 1</title>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-fixed navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="#">Mary Karroqe, mk5721</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      <li class="nav-item">
+		        <a class="nav-link" href="#assignment">Assignment</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#visu1">Visualization 1</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#visu2">Visualization 2</a>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+
+		<!-- ---------------- ASSIGNMENT ---------------- -->
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		  	<h1 class="display-4" id="assignment">Assignment</h1>
+		  	<hr class="my-4">
+
+		  	<div class="row">
+		  		<div class="col-lg-6">
+		  			<h3>Data</h3>
+		    		<p class="lead">In the AidData dataset, each row represents a financial transaction between two countries. The dataset contains the following attributes:</p>
+				  	<ul>
+				  		<li><b>Year:</b> year of the commitment</li>
+				  		<li><b>Donor:</b> country providing the financial resource</li>
+				  		<li><b>Recipient:</b> country or organization receiving the money</li>
+				  		<li><b>Commitment Amount:</b> the total amount of financial resources provided</li>
+				  		<li><b>Coalesced Purpose Name:</b> the purpose of the transaction</li>
+				  </ul>
+		  		</div>
+
+		  		<div class="col-lg-6">
+		  			<h3>Goal</h3>
+		    		<p class="lead"> Your goal is to create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.</p>
+		  		</div>
+
+		  		<div class="col-lg-12">
+		  			<hr class="my-4">
+					<p class="lead">The simplified and reduced and full datasets can be found here:</p>
+					<a class="btn btn-info btn-md" href="https://drive.google.com/open?id=1YiuHdfZv_JZ-igOemKJMRaU8dkucfmHxOP6Od3FraW8" role="button">Simplified Data</a>
+					<a class="btn btn-info btn-md" href="https://www.aiddata.org/data/aiddata-core-research-release-level-1-3-1" role="button">Full Dataset</a>
+		  		</div>
+		  	</div>
+		  </div>
+		</div>
+		<!-- --------------- /ASSIGNMENT ---------------- -->
+
+		<!-- ------------------ VIS 1 ------------------- -->
+		<div class="jumbotron jumbotron-fluid" id="visu1">
+		  <div class="container">
+		    <h1 class="display-4">Visualization 1</h1>
+		    <ul class="lead">
+				<li>How do the countries compare in terms of how much they receive and donate from other countries?</li>
+				<li>Are there countries that donate much more than they receive or receive much more than they donate?</li>
+			</ul>
+		  </div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="vis1"></div>
+				</div>
+			</div>
+		</div>
+		<!-- ----------------- /VIS 1 ------------------- -->
+
+		<!-- ------------------ VIS 2 ------------------- -->
+		<div class="jumbotron jumbotron-fluid" id="visu2">
+		  <div class="container">
+		    <h1 class="display-4">Visualization 2</h1>
+		    <ul class="lead">
+		    	<li>Do the countries that receive or donate the most tend to cluster around specific geographical areas of the world?</li>
+		    	<li> Are there neighboring countries that have radically different patterns in terms of how much they receive vs. how much they donate? </li>
+		    </ul>
+		  </div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="vis2"></div>
+				</div>
+			</div>
+		</div>
+		<!-- ----------------- /VIS 2 ------------------- -->
+
+		<!-- Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		<!-- D3 -->
+		<script src="d3/d3.js"></script>
+		<script src="d3/d3-array.js"></script>
+
+		<!-- Then our visualization code --> 
+        <script src="visualizations/vis1.js" defer></script>
+        <script src="visualizations/vis2.js" defer></script>
+
+		<!-- My JavaScript -->
+		<script src="main.js"></script>
+	</body>
+</html>
