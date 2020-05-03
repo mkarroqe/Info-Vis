@@ -5,8 +5,8 @@ Class Github and information can be found [here](https://github.com/nyuvis).
 # Contents
 | # | Project | Status |
 | - | - | :-: |
-| 1 | [Geographical](https://github.com/mkarroqe/Info-Vis/01-Graph-Design-Geo) | *In Progress* |
-| 2 | [Temporal](https://github.com/mkarroqe/Info-Vis/tree/master/02-Temporal) | *In Progress* |
+| 1 | [Geographical](/01-Graph-Design-Geo) | *In Progress* |
+| 2 | [Temporal](/02-Temporal) | *In Progress* |
 | 3 | Networks | - |
 
 # Assignment
