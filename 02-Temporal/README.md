@@ -1,3 +1,6 @@
+# Goal
+To create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.
+
 # Visualizations
 | # | Questions | Visualizations |
 | - | - | - |
