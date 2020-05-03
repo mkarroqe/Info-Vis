@@ -1,6 +1,6 @@
 # Color - Exercise
 
-Original Observable notebook can be found [here](https://observablehq.com/d/80992086c9c9d047)
+Original Observable notebook can be found [here](https://observablehq.com/d/80992086c9c9d047).
 
 In this exercise, we have created visualizations that do not have any color. Your task is to add appropriate color to them.
 
