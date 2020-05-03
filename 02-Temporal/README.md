@@ -1,23 +1,3 @@
-# Assignment
-In this assignment, you have to design visualization solutions for questions related to the
-AidData dataset. This dataset contains information about financial transactions for aid purposes
-between two countries. Given the data structure and analytical questions presented below, your
-goal is to sketch views that would help an analyst to obtain the answer for those questions.
-
-## Data
-In the AidData dataset, each row represents a financial transaction between two countries. The dataset contains the following attributes:
-
-| Attribute | Description |
-| - | - |
-| Year | Year of the commitment | 
-| Donor | Country providing the financial resource | 
-| Recipient | Country or organization receiving the money | 
-| Commitment Amount | The total amount of financial resources provided | 
-| Coalesced Purpose Name | The purpose of the transaction | 
-
-## Goal
-To create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.
-
 # Visualizations
 | # | Questions | Visualizations |
 | - | - | - |
