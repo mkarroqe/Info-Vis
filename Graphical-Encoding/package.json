@@ -1,0 +1,14 @@
+{
+  "name": "1e9302e360db6008",
+  "main": "1e9302e360db6008@1198.js",
+  "version": "1198.0.0",
+  "homepage": "https://observablehq.com/d/1e9302e360db6008",
+  "author": {
+    "name": "Mary Karroqe",
+    "url": "https://observablehq.com/@mkarroqe"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
