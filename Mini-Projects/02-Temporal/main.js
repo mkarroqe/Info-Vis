@@ -5,5 +5,5 @@ Promise.all([
   d3.csv('data/vis2Data.csv', d3.autoType)
 ]).then(([data1, data2]) => {
   vis1(data1, d3.select('#vis1'));
-  vis2(stackedExpand, d3.select('#vis2'));
+  vis2(data2, d3.select('#vis2'));
 });
