@@ -1,70 +1,94 @@
 function vis1(data, div) {
-  const margin = {top: 40, right: 20, bottom: 40, left: 100};
+  const margin = {top: 40, right: 20, bottom: 300, left: 65};
+  const visWidth = 1250 - margin.left - margin.right;
 
-  const visWidth = 700 - margin.left - margin.right;
-  const visHeight = 400 - margin.top - margin.bottom;
+  const x_elements = d3.set(data.map(function(item) { 
+      return item.year; 
+    }
+  )).values();
 
-  const svg = div.append('svg')
-      .attr('width', visWidth + margin.left + margin.right)
-      .attr('height', visHeight + margin.top + margin.bottom);
+  const y_elements = d3.set(data.map(function(item) { 
+      return item.country; 
+    } 
+  )).values();
 
-  const g = svg.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  const x = d3.scaleBand()
+      .domain(x_elements)
+      .range([0, visWidth * 0.95])  
 
-  // add title
-
-  g.append("text")
-    .attr("x", visWidth / 2)
-    .attr("y", -margin.top + 5)
-    .attr("text-anchor", "middle")
-    .attr("dominant-baseline", "hanging")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "16px")
-    .text("Game Scores");
-
-  // create scales
-
-  const x = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.score)]).nice()
-    .range([0, visWidth]);
-
-  const sortedNames = data.sort((a, b) => d3.descending(a.score, b.score))
-      .map(d => d.name);
+  const visHeight = x.step() * 20;
 
   const y = d3.scaleBand()
-    .domain(sortedNames)
-    .range([0, visHeight])
-    .padding(0.2);
+      .domain(y_elements)
+      .range([0, visHeight * 1.25])
+  
+  const color = d3.scaleSequential()
+      .domain([-300, 300])
+      .interpolator(d3.interpolatePiYG)
 
-  // create and add axes
+  const svg = div.append("svg")
+      .attr("width", visWidth + margin.left + margin.right)
+      .attr("height", visHeight + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  const g = svg.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+  
+  // legend
+  svg.append("g")
+    .attr("class", "legendLinear")
+    .attr("transform", "translate(820, 740)")
+    .attr("font-size", 9);
 
-  const xAxis = d3.axisBottom(x);
+  var legendLinear = d3.legendColor()
+    .shapeWidth(30)
+    .cells(11)
+    .orient('horizontal')
+    .scale(color)
+    .title("Net Donation (USD)");
 
-  g.append("g")
-    .attr("transform", `translate(0, ${visHeight})`)
-    .call(xAxis)
-    .call(g => g.selectAll(".domain").remove())
-    .append("text")
-    .attr("x", visWidth / 2)
-    .attr("y", 40)
-    .attr("fill", "black")
-    .attr("text-anchor", "middle")
-    .text("Score");
+  svg.select(".legendLinear")
+    .call(legendLinear);
+  
+  g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth / 2 - 200)
+      .attr('y', -65)
+      .attr('font-size', 20)
+      .text('Amount Donated v. Amount Received')
 
-  const yAxis = d3.axisLeft(y);
+  g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth / 2 - 80)
+      .attr('y', -45)
+      .attr('font-size', 20)
+      .text('1973-2013');
 
-  g.append("g")
-    .call(yAxis)
-    .call(g => g.selectAll(".domain").remove());
+  // y-axis labels
+  const yAxis = d3.axisLeft(y)
+      .tickPadding(10)
+      .tickSize(0);
+  
+  g.append('g')
+      .call(yAxis)
+      .call(g => g.selectAll('.domain').remove());
+  
+  // x-axis labels
+  const xAxis = d3.axisTop(x)
+      .tickPadding(10)
+      .tickSize(0);
 
-  // draw bars
-
-  g.selectAll("rect")
+  g.append('g')
+    .call(xAxis);
+  
+  // boxes
+  g.selectAll('rect')
     .data(data)
-    .join("rect")
-    .attr("x", d => 0)
-    .attr("y", d => y(d.name))
-    .attr("width", d => x(d.score))
-    .attr("height", d => y.bandwidth())
-    .attr("fill", "steelblue");
+    .join('rect')
+      .attr('x', d => x(d.year))
+      .attr('y', d => y(d.country))
+      .attr('width', x.bandwidth())
+      .attr('height', y.bandwidth())
+      .attr('fill', d => color(d.value))
 }

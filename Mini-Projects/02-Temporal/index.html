@@ -1,11 +1,11 @@
 <!-- Mary Karroqe
-	 Mini Project 1
+	 Mini Project 2
 -->
 <!DOCTYPE HTML>
 	<head>
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<title>Mini Project 1</title>
+		<title>Mini Project 2</title>
 	</head>
 
 	<body>
@@ -24,6 +24,9 @@
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#visu2">Visualization 2</a>
+		        <li class="nav-item">
+		        <a class="nav-link" href="#visu3">Visualization 3</a>
+		      </li>
 		      </li>
 		    </ul>
 		  </div>
@@ -69,19 +72,18 @@
 		  <div class="container">
 		    <h1 class="display-4">Visualization 1</h1>
 		    <ul class="lead">
-				<li>How do the countries compare in terms of how much they receive and donate from other countries?</li>
-				<li>Are there countries that donate much more than they receive or receive much more than they donate?</li>
+				<li>How does the amount donated vs. amount received change over time across all countries?</li><li>Are there countries that mostly send or mostly receive and countries that have a similar amount of donations they receive and send?</li><li>Are there countries that change their role over time? That is, they used to mostly send donations and turn into mostly receiving donations and vice-versa?</li><li>Are there countries in which you can find a sudden increase ("peak") or a sudden decrease ("valley")?</li>
 			</ul>
 		  </div>
 		</div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
+		<!-- <div class="container"> -->
+			<!-- <div class="row">
+				<div class="col-lg-12"> -->
 					<div id="vis1"></div>
-				</div>
-			</div>
-		</div>
+				<!-- </div>
+			</div> -->
+		<!-- </div> -->
 		<!-- ----------------- /VIS 1 ------------------- -->
 
 		<!-- ------------------ VIS 2 ------------------- -->
@@ -89,8 +91,7 @@
 		  <div class="container">
 		    <h1 class="display-4">Visualization 2</h1>
 		    <ul class="lead">
-		    	<li>Do the countries that receive or donate the most tend to cluster around specific geographical areas of the world?</li>
-		    	<li> Are there neighboring countries that have radically different patterns in terms of how much they receive vs. how much they donate? </li>
+		    	<li>Focus on the top 10 "Coalesced Purposes" of donations (in terms of amount of disbursement across all countries and all time). What are the top 10 purposes of disbursements (in terms of total amount of disbursement)?</li><li> How does their relative amount compare over time? E.g., are there purposes that tend to be prominent for a period of time and others that become more prominent during other periods?</li>
 		    </ul>
 		  </div>
 		</div>
@@ -104,6 +105,25 @@
 		</div>
 		<!-- ----------------- /VIS 2 ------------------- -->
 
+		<!-- ------------------ VIS 3 ------------------- -->
+		<div class="jumbotron jumbotron-fluid" id="visu3">
+		  <div class="container">
+		    <h1 class="display-4">Visualization 3</h1>
+		    <ul class="lead">
+		    	<li>Focusing exclusively on countries that receive donations, how do donations shift geographically over time? </li><li>Do donations tend to be always in the same regions of the world over the years or they have been shifting over time? </li> Can you build a visualization that shows the “history of donations” so that one can get a sense of which regions of the world have had more need for donations over the years? </li>
+		    </ul>
+		  </div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="vis3"></div>
+				</div>
+			</div>
+		</div>
+		<!-- ----------------- /VIS 3 ------------------- -->
+
 		<!-- Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -112,6 +132,9 @@
 		<!-- D3 -->
 		<script src="d3/d3.js"></script>
 		<script src="d3/d3-array.js"></script>
+
+		<!-- D3 Legend -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
 
 		<!-- Then our visualization code --> 
         <script src="visualizations/vis1.js" defer></script>
