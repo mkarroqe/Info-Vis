@@ -12,12 +12,12 @@ To create 3 independent visualizations of the same data set, each one with the i
 
 > *Hint: looking at the graph one should be able to observe: “Ah! During these years donations were mostly about X but then there were way more donations about Y”.* 
 
-*Coming Soon*
+![](demo/vis2.png)
 
 ### [`Vis 3`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/02-Temporal/visualizations/vis3.js)
 <ul><li>Focusing exclusively on countries that receive donations, how do donations shift geographically over time? </li><li>Do donations tend to be always in the same regions of the world over the years or they have been shifting over time? </li> Can you build a visualization that shows the “history of donations” so that one can get a sense of which regions of the world have had more need for donations over the years? </li></ul> 
 
-*Coming Soon*
+> Extra Credit; was not completed
 
 # Running Code
 Code derived from [NYU Info Vis](https://github.com/nyuvis/info-vis-project-template) template.
