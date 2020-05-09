@@ -2,22 +2,40 @@
 To create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.
 
 # Visualizations
-### [`Vis 1`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/02-Temporal/visualizations/vis1.js) 
-<ul><li>How does the amount donated vs. amount received change over time across all countries?</li><li>Are there countries that mostly send or mostly receive and countries that have a similar amount of donations they receive and send?</li><li>Are there countries that change their role over time? That is, they used to mostly send donations and turn into mostly receiving donations and vice-versa?</li><li>Are there countries in which you can find a sudden increase ("peak") or a sudden decrease ("valley")?</li></ul>
+### [`Vis 1`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis1.js) 
 
-![](demo/vis1.png)
+Create an overview of the relationships between countries so that it is possible to see who donates to whom and how much. The main question one should be able to answer is:
+<ul>
+  <li>Who are the major donors and to which countries do they donate the most and how much?</li>
+  <li>Conversely, who are the major receivers and which countries do they receive from the most and how much?</li>
+</ul>
 
-### [`Vis 2`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/02-Temporal/visualizations/vis2.js)
-<ul><li>Focus on the top 10 “Coalesced Purposes” of donations (in terms of amount of disbursement across all countries and all time). What are the top 10 purposes of disbursements (in terms of total amount of disbursement)?</li><li> How does their relative amount compare over time? E.g., are there purposes that tend to be prominent for a period of time and others that become more prominent during other periods?</li></ul>
+We only care about the top 10 recipients and the top 20 donors over time for this question.
 
-> *Hint: looking at the graph one should be able to observe: “Ah! During these years donations were mostly about X but then there were way more donations about Y”.* 
+> *Coming soon*
+<!-- ![](demo/vis1.png) -->
 
-*Coming Soon*
+### [`Vis 2`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis2.js)
+<ul>
+  <li>Considering only the top 5 purposes of donation, how does the relationship between countries look like in terms of purposes? What composition of  purposes do the donations between each pair of countries have?</li>
+  <li>Are there countries that donate to a given country using multiple purposes? Or do counties always donate using one single purpose when donating to another country?</li>
+</ul>
 
-### [`Vis 3`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/02-Temporal/visualizations/vis3.js)
-<ul><li>Focusing exclusively on countries that receive donations, how do donations shift geographically over time? </li><li>Do donations tend to be always in the same regions of the world over the years or they have been shifting over time? </li> Can you build a visualization that shows the “history of donations” so that one can get a sense of which regions of the world have had more need for donations over the years? </li></ul> 
+The same as the previous question, we only care about the top 10 recipients and the top 20 donors here.
 
-*Coming Soon*
+> *Coming Soon*
+
+### [OPTIONAL] [`Vis 3`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis3.js)
+For this last exercise you have to extend the analysis above to see how the patterns of donations change over time. Focusing again on the top 10 recipients and top 20 donors:   
+
+<ul>
+  <li>how do the patterns of donations (who donates to whom and how much) change over time? </li>
+  <li>Are there sudden changes?</li> 
+  <li>Are there countries that always donate to other countries?</li>
+  <li>Are there major shifts (say a country used to donate to a specific set of countries and then it changes to other countries)?</li>
+</ul> 
+
+> *Coming Soon*
 
 # Running Code
 Code derived from [NYU Info Vis](https://github.com/nyuvis/info-vis-project-template) template.
