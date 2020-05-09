@@ -1,6 +1,16 @@
 # Goal
 To create 3 independent visualizations of the same data set, each one with the intent of answering the questions stated below. For each numbered visualization, you should be able to create a data visualization that answers all of the questions specified.
 
+# Running Code
+Code derived from [NYU Info Vis](https://github.com/nyuvis/info-vis-project-template) template.
+
+To view `d3` visualizations, a local server must be created. This can be done by navigating to this directory and running:
+```python
+# For Python 3:
+python -m http.server
+```
+The website will be viewable at [http://localhost:8000/](http://localhost:8000/).
+
 # Visualizations
 ### [`Vis 1`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis1.js) 
 
@@ -36,13 +46,3 @@ For this last exercise you have to extend the analysis above to see how the patt
 </ul> 
 
 > *Coming Soon*
-
-# Running Code
-Code derived from [NYU Info Vis](https://github.com/nyuvis/info-vis-project-template) template.
-
-To view `d3` visualizations, a local server must be created. This can be done by navigating to this directory and running:
-```python
-# For Python 3:
-python -m http.server
-```
-The website will be viewable at [http://localhost:8000/](http://localhost:8000/).
