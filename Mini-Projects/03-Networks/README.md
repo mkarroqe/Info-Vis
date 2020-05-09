@@ -39,7 +39,7 @@ The same as the previous question, we only care about the top 10 recipients and 
 For this last exercise you have to extend the analysis above to see how the patterns of donations change over time. Focusing again on the top 10 recipients and top 20 donors:   
 
 <ul>
-  <li>how do the patterns of donations (who donates to whom and how much) change over time? </li>
+  <li>How do the patterns of donations (who donates to whom and how much) change over time? </li>
   <li>Are there sudden changes?</li> 
   <li>Are there countries that always donate to other countries?</li>
   <li>Are there major shifts (say a country used to donate to a specific set of countries and then it changes to other countries)?</li>
