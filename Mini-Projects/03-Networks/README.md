@@ -22,8 +22,7 @@ Create an overview of the relationships between countries so that it is possible
 
 We only care about the top 10 recipients and the top 20 donors over time for this question.
 
-> *Coming soon*
-<!-- ![](demo/vis1.png) -->
+![](demo/vis1.png)
 
 ### [`Vis 2`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis2.js)
 <ul>
