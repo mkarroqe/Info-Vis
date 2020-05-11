@@ -1,12 +1,12 @@
 // Heatmap for Vis1
 
 function vis1(data, div) {
-  const margin = {top: 40, right: 20, bottom: 300, left: 65};
+  const margin = {top: 60, right: 20, bottom: 300, left: 65};
   const visWidth = 1250 - margin.left - margin.right;
 
   // ------------------ x values ------------------ 
   const x_elements = d3.set(data.map(function(item) { 
-      return item.year; 
+      return item.recipient; 
     }
   )).values();
 
@@ -15,21 +15,22 @@ function vis1(data, div) {
       .range([0, visWidth * 0.95])  
 
   // ------------------ y values ------------------ 
-  const visHeight = x.step() * 20;
+  const visHeight = x.step() * 6;
 
   const y_elements = d3.set(data.map(function(item) { 
-      return item.country; 
+      return item.donor; 
     } 
   )).values();
 
   const y = d3.scaleBand()
       .domain(y_elements)
-      .range([0, visHeight * 1.25])
+      .range([0, visHeight])
 
+  const extent = [1568, 48830067295] // hardcoded from ordered data
   // -------------------- color ------------------- 
   const color = d3.scaleSequential()
-      .domain([-300, 300])
-      .interpolator(d3.interpolatePiYG)
+      .domain([extent[0], extent[1] / 10])
+      .interpolator(d3.interpolateOranges)
 
   // ------------------- svg + g ------------------
   const svg = div.append("svg")
@@ -45,24 +46,24 @@ function vis1(data, div) {
   g.selectAll('rect')
     .data(data)
     .join('rect')
-      .attr('x', d => x(d.year))
-      .attr('y', d => y(d.country))
+      .attr('x', d => x(d.recipient))
+      .attr('y', d => y(d.donor))
       .attr('width', x.bandwidth())
       .attr('height', y.bandwidth())
-      .attr('fill', d => color(d.value))
+      .attr('fill', d => color(d.amount))
 
   // -------------------- legend ------------------
   svg.append("g")
     .attr("class", "legendLinear")
-    .attr("transform", "translate(820, 740)")
+    .attr("transform", "translate(750, 750)")
     .attr("font-size", 9);
 
   var legendLinear = d3.legendColor()
-    .shapeWidth(30)
-    .cells(11)
+    .shapeWidth(80)
+    .cells(5)
     .orient('horizontal')
     .scale(color)
-    .title("Net Donation (USD)");
+    .title("Donation Amount (USD)");
 
   svg.select(".legendLinear")
     .call(legendLinear);
@@ -71,16 +72,9 @@ function vis1(data, div) {
   g.append('text')
       .attr('class', 'title')
       .attr('x', visWidth / 2 - 200)
-      .attr('y', -65)
+      .attr('y', -80)
       .attr('font-size', 20)
-      .text('Amount Donated v. Amount Received')
-
-  g.append('text')
-      .attr('class', 'title')
-      .attr('x', visWidth / 2 - 80)
-      .attr('y', -45)
-      .attr('font-size', 20)
-      .text('1973-2013');
+      .text('Top Donation v. Receipt Relationships')
 
   // -------------------- labels -------------------
   // x-axis
@@ -92,6 +86,13 @@ function vis1(data, div) {
     .call(xAxis)
     .call(g => g.selectAll('.domain').remove());
 
+  g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth / 2 - 75)
+      .attr('y', -50)
+      .attr('font-size', 14)
+      .text("Receipient Countries")
+
   // y-axis
   const yAxis = d3.axisLeft(y)
       .tickPadding(10)
@@ -100,4 +101,14 @@ function vis1(data, div) {
   g.append('g')
       .call(yAxis)
       .call(g => g.selectAll('.domain').remove());
+
+  g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth / 2 - 700)
+      .attr('y', 300)
+      .attr('font-size', 14)
+      .attr('writing-mode', 'vertical-rl')
+      // .attr('text-orientation', 'upright')
+      .text("Donor Countries")
+  
 }
