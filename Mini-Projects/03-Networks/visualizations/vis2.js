@@ -1,7 +1,7 @@
-function vis2(data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, data2_8, data2_9, data2_10, div) {
+function vis2(data, data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, data2_8, data2_9, data2_10, div) {
   const margin = {top: 40, right: 100, bottom: 100, left: 55};
   const visWidth = 1420 - margin.left - margin.right;
-  const visHeight = 600 - margin.top - margin.bottom;
+  const visHeight = 700 - margin.top - margin.bottom;
 
   // ------------------- svg + g ------------------
   const svg = div.append("svg")
@@ -30,15 +30,18 @@ function vis2(data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, dat
       .tickSize(0)
 
   g.append('g')
-    .attr('transform', `translate(0,${(visHeight / 2) + outerRadius + 5})`)
+    .attr('transform', `translate(0,${(visHeight * 1.01) + outerRadius + 5})`)
     .call(xAxis)
     .call(g => g.selectAll('.domain').remove());
   
   // ------------------ y values ------------------ 
-  const y_elements = d3.set(data2_1.map(function(item) { 
+
+  const y_elements = d3.set(data.map(function(item) { 
       return item.recipient; 
     }
   )).values();
+
+  console.log()
 
   const y = d3.scalePoint()
       .domain(y_elements)
@@ -62,23 +65,29 @@ function vis2(data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, dat
   
   // -------------------- data --------------------
   
-  // ---------- 1. INDIA ----------
-  // const amounts = d3.set(data2_1.map(function(item) { 
-  //     return item.amount; 
-  //   }
-  // )).values();
+  // // ---------- 1. INDIA ----------
+  // // const amounts = d3.set(data2_1.map(function(item) { 
+  // //     return item.amount; 
+  // //   }
+  // // )).values();
+
+  // // data
+  // const data = d3.rollup(data2_1, group => d3.sum(new Set(group.map(g => g.amount))), d => d.donor, d => d.coalesced_purpose_name)
+
+  // // const amounts = Array.from(data, ([donor, purposes]) => ({donor:donor, purposes: Array.from(purposes, ([purpose, amount]) => (purpose, amount))}));
+
+  // console.log(data)
 
   // // TODO: figure out why amount values aren't coming up
   // const pie = d3.pie()
-  //     .value(d => 2)
-  //     // .value(d => d.amount);
+  //     .value(d => d.amount);
 
   // const arc = d3.arc()
   //     .innerRadius(0)
   //     .outerRadius(outerRadius);
 
   // const pieGroups = g.selectAll('.pieGroup')
-  //   .data(data2_1)
+  //   .data(data)
   //   .join('g')
   //     .attr('class', 'pieGroup')
   //     .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
@@ -90,36 +99,36 @@ function vis2(data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, dat
   //     .attr('fill', d => color(d.data.coalesced_purpose_name))
 
   // ---------- 2. THAILAND ----------
-  const amounts2 = d3.set(data2_2.map(function(item) { 
-      return item.amount; 
-    }
-  )).values();
+  // const amounts2 = d3.set(data2_2.map(function(item) { 
+  //     return item.amount; 
+  //   }
+  // )).values();
 
-  // TODO: figure out why amount values aren't coming up
-  const pie2 = d3.pie()
-      .value(d => 2)
-      // .value(d => d.amount);
+  // // TODO: figure out why amount values aren't coming up
+  // const pie2 = d3.pie()
+  //     // .value(d => 2)
+  //     .value(d => d.amount);
 
-  const arc2 = d3.arc()
-      .innerRadius(0)
-      .outerRadius(outerRadius);
+  // const arc2 = d3.arc()
+  //     .innerRadius(0)
+  //     .outerRadius(outerRadius);
 
-  const pieGroups2 = g.selectAll('.pieGroup')
-    .data(data2_2)
-    .join('g')
-      .attr('class', 'pieGroup')
-      .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
+  // const pieGroups2 = g.selectAll('.pieGroup2')
+  //   .data(data2_2)
+  //   .join('g')
+  //     .attr('class', 'pieGroup2')
+  //     .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
 
-  pieGroups2.selectAll('path')
-    .data(d => pie2(d.coalesced_purpose_name))
-    .join('path')
-      .attr('d', d => arc2(d))
-      .attr('fill', d => color(d.data.coalesced_purpose_name))
+  // pieGroups2.selectAll('path')
+  //   .data(d => pie2(d.coalesced_purpose_name))
+  //   .join('path')
+  //     .attr('d', d => arc2(d))
+  //     .attr('fill', d => color(d.data.coalesced_purpose_name))
 
   // -------------------- legend ------------------
   svg.append("g")
     .attr("class", "legendOrdinal")
-    .attr("transform", "translate(-10, 375)")
+    .attr("transform", "translate(1110, -30)")
     .attr("font-size", 9);
 
   var legendOrdinal = d3.legendColor()
@@ -137,6 +146,20 @@ function vis2(data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, dat
       .attr('y', -35)
       .attr('font-size', 20)
       .text('Top 5 Coalesced Donation Purposes across Countries')
+
+  g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth / 2 - 725)
+      .attr('y', -20)
+      .attr('font-size', 14)
+      .text("Recipient Countries")
+
+   g.append('text')
+      .attr('class', 'title')
+      .attr('x', visWidth)
+      .attr('y', 610)
+      .attr('font-size', 14)
+      .text("Donors")
 }
 
 

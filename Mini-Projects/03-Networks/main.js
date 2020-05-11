@@ -2,6 +2,7 @@
 Promise.all([
   d3.csv('data/vis1.csv', d3.autoType),
 
+  d3.csv('data/vis2.csv', d3.autoType),
   d3.csv('data/vis2-1.csv', d3.autoType),
   d3.csv('data/vis2-2.csv', d3.autoType),
   d3.csv('data/vis2-3.csv', d3.autoType),
@@ -16,6 +17,7 @@ Promise.all([
 ]).then(([
 	data1, 
 
+	data2,
 	data2_1, 
 	data2_2, 
 	data2_3, 
@@ -30,6 +32,7 @@ Promise.all([
 ]) => {
 	vis1(data1, d3.select('#vis1'));
 	vis2(
+		data2,
 		data2_1, 
 		data2_2, 
 		data2_3, 
