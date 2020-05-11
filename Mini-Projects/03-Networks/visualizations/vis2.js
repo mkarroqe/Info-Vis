@@ -1,4 +1,4 @@
-function vis2(data, data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_7, data2_8, data2_9, data2_10, div) {
+function vis2(data, div) {
   const margin = {top: 40, right: 100, bottom: 100, left: 55};
   const visWidth = 1420 - margin.left - margin.right;
   const visHeight = 700 - margin.top - margin.bottom;
@@ -14,7 +14,7 @@ function vis2(data, data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // ------------------ x values ------------------ 
-  const x_elements = d3.set(data2_1.map(function(item) { 
+  const x_elements = d3.set(data.map(function(item) { 
       return item.donor; 
     }
   )).values();
@@ -62,68 +62,6 @@ function vis2(data, data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_
   const color = d3.scaleOrdinal()
     .domain(purposes)
     .range(d3.schemeTableau10);
-  
-  // -------------------- data --------------------
-  
-  // // ---------- 1. INDIA ----------
-  // // const amounts = d3.set(data2_1.map(function(item) { 
-  // //     return item.amount; 
-  // //   }
-  // // )).values();
-
-  // // data
-  // const data = d3.rollup(data2_1, group => d3.sum(new Set(group.map(g => g.amount))), d => d.donor, d => d.coalesced_purpose_name)
-
-  // // const amounts = Array.from(data, ([donor, purposes]) => ({donor:donor, purposes: Array.from(purposes, ([purpose, amount]) => (purpose, amount))}));
-
-  // console.log(data)
-
-  // // TODO: figure out why amount values aren't coming up
-  // const pie = d3.pie()
-  //     .value(d => d.amount);
-
-  // const arc = d3.arc()
-  //     .innerRadius(0)
-  //     .outerRadius(outerRadius);
-
-  // const pieGroups = g.selectAll('.pieGroup')
-  //   .data(data)
-  //   .join('g')
-  //     .attr('class', 'pieGroup')
-  //     .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
-
-  // pieGroups.selectAll('path')
-  //   .data(d => pie(d.coalesced_purpose_name))
-  //   .join('path')
-  //     .attr('d', d => arc(d))
-  //     .attr('fill', d => color(d.data.coalesced_purpose_name))
-
-  // ---------- 2. THAILAND ----------
-  // const amounts2 = d3.set(data2_2.map(function(item) { 
-  //     return item.amount; 
-  //   }
-  // )).values();
-
-  // // TODO: figure out why amount values aren't coming up
-  // const pie2 = d3.pie()
-  //     // .value(d => 2)
-  //     .value(d => d.amount);
-
-  // const arc2 = d3.arc()
-  //     .innerRadius(0)
-  //     .outerRadius(outerRadius);
-
-  // const pieGroups2 = g.selectAll('.pieGroup2')
-  //   .data(data2_2)
-  //   .join('g')
-  //     .attr('class', 'pieGroup2')
-  //     .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
-
-  // pieGroups2.selectAll('path')
-  //   .data(d => pie2(d.coalesced_purpose_name))
-  //   .join('path')
-  //     .attr('d', d => arc2(d))
-  //     .attr('fill', d => color(d.data.coalesced_purpose_name))
 
   // -------------------- legend ------------------
   svg.append("g")
@@ -160,6 +98,40 @@ function vis2(data, data2_1, data2_2, data2_3, data2_4, data2_5, data2_6, data2_
       .attr('y', 610)
       .attr('font-size', 14)
       .text("Donors")
+  
+  // -------------------- data --------------------
+  const data2 = d3.rollup(data, 
+      group => d3.sum(new Set( 
+                    group.map(g => g.amount))), 
+                    d => d.donor,
+                    d => d.coalesced_purpose_name);
+
+  const amounts = Array.from(data2, 
+      ([donor, purposes]) => 
+                    ({donor: donor,
+                      purposes: Array.from(purposes, ([purpose, amount]) => (purpose, amount))}));
+
+  console.log(amounts)
+
+  // TODO: figure out why amount values aren't coming up (will resubmit)
+  const pie = d3.pie()
+      // .value(d => d.amount);
+
+  const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(outerRadius);
+
+  const pieGroups = g.selectAll('.pieGroup')
+    .data(amounts)
+    .join('g')
+      .attr('class', 'pieGroup')
+      .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
+
+  pieGroups.selectAll('path')
+    .data(d => pie(d.coalesced_purpose_name))
+    .join('path')
+      .attr('d', d => arc(d))
+      .attr('fill', d => color(d.data.coalesced_purpose_name))
 }
 
 
