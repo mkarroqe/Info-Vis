@@ -22,7 +22,11 @@ Create an overview of the relationships between countries so that it is possible
 
 We only care about the top 10 recipients and the top 20 donors over time for this question.
 
-![](demo/vis1.png)
+| ![](demo/vis1-grid.png) | ![](demo/vis1-no-grid.png) |
+| :-: | :-: |
+| With Grid | Without Grid |
+
+> It's much easier to distinguish between low value and empty cells with the gridlines added, making it the superior visualization.
 
 ### [`Vis 2`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/03-Networks/visualizations/vis2.js)
 <ul>
