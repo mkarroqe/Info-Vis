@@ -1,5 +1,4 @@
 // Heatmap for Vis1
-
 function vis1(data, div) {
   const margin = {top: 60, right: 20, bottom: 300, left: 65};
   const visWidth = 1250 - margin.left - margin.right;
@@ -41,7 +40,7 @@ function vis1(data, div) {
   
   const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
-  
+
   // --------------------- cells ------------------
   g.selectAll('rect')
     .data(data)
@@ -51,6 +50,32 @@ function vis1(data, div) {
       .attr('width', x.bandwidth())
       .attr('height', y.bandwidth())
       .attr('fill', d => color(d.amount))
+
+  // -------------------- grid -------------------
+  const grid = g.append("g")
+      .attr("class", "grid");
+  
+  grid.append("g")
+    .selectAll("line")
+    .data(data)
+    .join("line")
+      .attr("stroke", "#ede")
+      .attr("stroke-width", "0.25px")
+      .attr("x1", 0)
+      .attr("x2", (visWidth / 10) * 9.5)
+      .attr("y1", d => y(d.donor))
+      .attr("y2", d => y(d.donor));
+  
+  grid.append("g")
+    .selectAll("line")
+    .data(data)
+    .join("line")
+      .attr("stroke", "#ede")
+      .attr("stroke-width", "0.25px")
+      .attr("x1", d => x(d.recipient))
+      .attr("x2", d => x(d.recipient))
+      .attr("y1", d => 0)
+      .attr("y2", d => visHeight);
 
   // -------------------- legend ------------------
   svg.append("g")
@@ -108,7 +133,6 @@ function vis1(data, div) {
       .attr('y', 300)
       .attr('font-size', 14)
       .attr('writing-mode', 'vertical-rl')
-      // .attr('text-orientation', 'upright')
       .text("Donor Countries")
   
 }

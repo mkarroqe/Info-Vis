@@ -1,5 +1,4 @@
 // Heatmap for Vis1
-
 function vis1(data, div) {
   const margin = {top: 40, right: 20, bottom: 300, left: 65};
   const visWidth = 1250 - margin.left - margin.right;
