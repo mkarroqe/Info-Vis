@@ -1,70 +1,81 @@
 function vis1(data, div) {
-  const margin = {top: 40, right: 20, bottom: 40, left: 100};
+  
+  var margin = {top: 40, right: 0, bottom: 60, left: 30};
+    
+  var width = 1100 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
-  const visWidth = 700 - margin.left - margin.right;
-  const visHeight = 400 - margin.top - margin.bottom;
+  var svg = div.append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  const svg = div.append('svg')
-      .attr('width', visWidth + margin.left + margin.right)
-      .attr('height', visHeight + margin.top + margin.bottom);
 
-  const g = svg.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  var x = d3.scaleLinear()
+    .range([0, width]);
 
-  // add title
+  var color = d3.scaleSequential(d3.interpolatePRGn);
 
-  g.append("text")
-    .attr("x", visWidth / 2)
-    .attr("y", -margin.top + 5)
-    .attr("text-anchor", "middle")
-    .attr("dominant-baseline", "hanging")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "16px")
-    .text("Game Scores");
+  var y = d3.scaleBand()
+    .range([height, 0])
+    .padding(0.1);
 
-  // create scales
 
-  const x = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.score)]).nice()
-    .range([0, visWidth]);
-
-  const sortedNames = data.sort((a, b) => d3.descending(a.score, b.score))
-      .map(d => d.name);
-
-  const y = d3.scaleBand()
-    .domain(sortedNames)
-    .range([0, visHeight])
-    .padding(0.2);
-
-  // create and add axes
-
-  const xAxis = d3.axisBottom(x);
-
-  g.append("g")
-    .attr("transform", `translate(0, ${visHeight})`)
-    .call(xAxis)
-    .call(g => g.selectAll(".domain").remove())
-    .append("text")
-    .attr("x", visWidth / 2)
-    .attr("y", 40)
-    .attr("fill", "black")
-    .attr("text-anchor", "middle")
-    .text("Score");
-
-  const yAxis = d3.axisLeft(y);
-
-  g.append("g")
-    .call(yAxis)
-    .call(g => g.selectAll(".domain").remove());
-
-  // draw bars
-
-  g.selectAll("rect")
+  y.domain(data.map(function(d) { return d.country; }));
+  x.domain(d3.extent(data, function(d) { return d.amount; }));
+  
+  var max = d3.max(data, function(d) { return d.amount; });
+  color.domain([-max, max]);
+  
+  svg.append("g")
+    .attr("class", "y-axis")
+    .attr("transform", "translate(" + x(0) + ",0)")
+    .append("line")
+      .attr("y1", 0)
+      .attr("y2", height);
+  
+  svg.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", "translate(0," + (height + 10) + ")")
+    .call(d3.axisBottom(x).tickSizeOuter(0));
+  
+  var bars = svg.append("g")
+    .attr("class", "bars")
+  
+  bars.selectAll("rect")
     .data(data)
-    .join("rect")
-    .attr("x", d => 0)
-    .attr("y", d => y(d.name))
-    .attr("width", d => x(d.score))
-    .attr("height", d => y.bandwidth())
-    .attr("fill", "steelblue");
+  .enter().append("rect")
+    .attr("class", "annual-growth")
+    .attr("x", function(d) {
+      return x(Math.min(0, d.amount));
+    })
+    .attr("y", function(d) { return y(d.country); })
+    .attr("height", y.bandwidth())
+    .attr("width", function(d) { 
+      return Math.abs(x(d.amount) - x(0))
+    })
+    .style("fill", function(d) {
+      return color(d.amount)
+    });
+  
+  var labels = svg.append("g")
+    .attr("class", "labels");
+  
+  labels.selectAll("text")
+    .data(data)
+  .enter().append("text")
+    .attr("class", "bar-label")
+    .attr("x", x(0))
+    .attr("y", function(d) { return y(d.country)})
+    .attr("dx", function(d) {
+      return d.amount < 0 ? 5 : -5;
+    })
+    .attr("dy", y.bandwidth())
+    .attr("text-anchor", function(d) {
+      return d.amount < 0 ? "start" : "end";
+    })
+    .text(function(d) { return d.country });
+    
 }
+
