@@ -5,9 +5,10 @@ To create 3 independent visualizations of the same data set, each one with the i
 ### [`Vis 1`](https://github.com/mkarroqe/Info-Vis/blob/master/Mini-Projects/02-Temporal/visualizations/vis1.js) 
 <ul><li>How does the amount donated vs. amount received change over time across all countries?</li><li>Are there countries that mostly send or mostly receive and countries that have a similar amount of donations they receive and send?</li><li>Are there countries that change their role over time? That is, they used to mostly send donations and turn into mostly receiving donations and vice-versa?</li><li>Are there countries in which you can find a sudden increase ("peak") or a sudden decrease ("valley")?</li></ul>
 
-| ![](demo/vis1-value.png) | ![](demo/vis1-alpha.png) |
+| | |
 | :-: | :-: |
-| Ranked by Donation Amount | Ranked Alphabetically |
+| Ranked by Donation Amount | ![](demo/vis1-value.png) |
+| Ranked Alphabetically | ![](demo/vis1-alpha.png) |
 
 > In the side-by-side comparison, it is clear that it is much easier to answer the above questions in the donation-ranked graph!
 
