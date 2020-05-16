@@ -1,5 +1,5 @@
 function vis2(data, geoJSON, div) {
-  const margin = {top: 120, right: 20, bottom: 0, left: 20};
+  const margin = {top: 120, right: 20, bottom: -100, left: 0};
   const visWidth = 1900 - margin.left - margin.right;
   const visHeight = 600 - margin.top - margin.bottom;
 
@@ -12,15 +12,15 @@ function vis2(data, geoJSON, div) {
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // ----------------- projection ----------------- 
-  const projection =  d3.geoNaturalEarth1()
-      .fitSize([visWidth / 2, visHeight / 1.2], geoJSON);
+  const projection =  d3.geoMercator()
+      .fitSize([visWidth / 2, visHeight], geoJSON);
 
   const path = d3.geoPath().projection(projection);
 
   // -------------------- legend ------------------
   var color = d3.scaleSequential()
     .domain([0, 1])
-    .interpolator(d3.interpolateGreens);
+    .interpolator(d3.interpolateRdYlBu);
 
   svg.append("g")
     .attr("class", "legendLinear")
@@ -51,9 +51,9 @@ function vis2(data, geoJSON, div) {
   // --------------------- title ------------------
   g.append('text')
       .attr('class', 'title')
-      .attr('x', visWidth / 5)
+      .attr('x', 0)
       .attr('y', -65)
       .attr('font-size', 20)
-      .text('International Donation Percentages')
+      .text('Net Donations by Country');
 }
 
