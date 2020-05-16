@@ -1,4 +1,6 @@
-function vis2(data, div) {
+function vis2(india, thai, div) {
+  const data = [india, thai];
+
   const margin = {top: 40, right: 100, bottom: 100, left: 55};
   const visWidth = 1420 - margin.left - margin.right;
   const visHeight = 700 - margin.top - margin.bottom;
@@ -14,7 +16,7 @@ function vis2(data, div) {
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // ------------------ x values ------------------ 
-  const x_elements = d3.set(data.map(function(item) { 
+  const x_elements = d3.set(data[0].map(function(item) { 
       return item.donor; 
     }
   )).values();
@@ -34,28 +36,6 @@ function vis2(data, div) {
     .call(xAxis)
     .call(g => g.selectAll('.domain').remove());
   
-  // ------------------ y values ------------------ 
-
-  const y_elements = d3.set(data.map(function(item) { 
-      return item.recipient; 
-    }
-  )).values();
-
-  console.log()
-
-  const y = d3.scalePoint()
-      .domain(y_elements)
-      .range([visHeight, visHeight]);
-
-  // y-axis
-  const yAxis = d3.axisLeft(y)
-      .tickPadding(50)
-      .tickSize(0);
-
-  g.append("g")
-      .call(yAxis)
-      .call(g => g.selectAll('.domain').remove())
-
   // ------------------- color --------------------
   const purposes = ["Air transport", "Industrial development", "Power generation/non-renewable sources", "Rail transport", "RESCHEDULING AND REFINANCING"]
 
@@ -98,46 +78,69 @@ function vis2(data, div) {
       .attr('y', 610)
       .attr('font-size', 14)
       .text("Donors")
-  
-  // -------------------- data --------------------
-  const data2 = d3.rollup(data,
-    group => d3.sum(new Set(group.map(g => g.amount))),
-    d => d.donor,
-    d => d.coalesced_purpose_name);
 
-  console.log(data2);
+  // ------------------ all pie groups ------------------ 
+  for (var i = 0; i < 1; i++) {
+    // ------------------ y values ------------------ 
+    const y_elements = d3.set(data[i].map(function(item) { 
+        return item.recipient; 
+      }
+    )).values();
 
-  const amounts = Array.from(data2, 
-                            ([donor, purposes]) => ({
-                              donor: donor,
-                              types: Array.from(purposes, ([purpose, amount]) => ({purpose, amount}))
-                            })); 
+    const y = d3.scalePoint()
+        .domain(y_elements)
+        .range([visHeight, visHeight]);
 
-  console.log(amounts);
+    // y-axis
+    const yAxis = d3.axisLeft(y)
+        .tickPadding(50)
+        .tickSize(0);
 
-  const maxRadius = 10;
-  const radius = d3.scaleSqrt()
-      .domain([0, d3.max(amounts, d => d3.max(d.types, b => b.amount))])
-      .range([0, maxRadius]);
+    g.append("g")
+        .call(yAxis)
+        .call(g => g.selectAll('.domain').remove())
+    
+    // -------------------- data --------------------
+    const data2 = d3.rollup(data[i],
+      group => d3.sum(new Set(group.map(g => g.amount))),
+      d => d.donor,
+      d => d.coalesced_purpose_name);
 
-  const pie = d3.pie()
-      .value(d => d.amount);
+    console.log(data2);
 
-  const arc = d3.arc()
-      .innerRadius(0)
-      .outerRadius(outerRadius);
+    const amounts = Array.from(data2, 
+                              ([donor, purposes]) => ({
+                                donor: donor,
+                                types: Array.from(purposes, ([purpose, amount]) => ({purpose, amount}))
+                              })); 
 
-  const pieGroups = g.selectAll('.pieGroup')
-    .data(amounts)
-    .join('g')
-      .attr('class', 'pieGroup')
-      .attr('transform', d => `translate(${x(d.donor)},${visHeight})`);
+    console.log(amounts);
 
-  pieGroups.selectAll('path')
-    .data(d => pie(d.types))
-    .join('path')
-      .attr('d', d => arc(d))
-      .attr('fill', d => color(d.data.purpose))
+    const maxRadius = 10;
+    const radius = d3.scaleSqrt()
+        .domain([0, d3.max(amounts, d => d3.max(d.types, b => b.amount))])
+        .range([0, maxRadius]);
+
+    const pie = d3.pie()
+        .value(d => d.amount);
+
+    const arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(outerRadius);
+
+    const pieGroups = g.selectAll('.pieGroup')
+      .data(amounts)
+      .join('g')
+        .attr('class', 'pieGroup')
+        .attr('transform', d => `translate(${x(d.donor)},${visHeight})`);
+
+    pieGroups.selectAll('path')
+      .data(d => pie(d.types))
+      .join('path')
+        .attr('d', d => arc(d))
+        .attr('fill', d => color(d.data.purpose))
+
+  } // loop end
 }
 
 
