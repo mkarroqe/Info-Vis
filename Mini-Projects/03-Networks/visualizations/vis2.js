@@ -80,7 +80,7 @@ function vis2(india, thai, div) {
       .text("Donors")
 
   // ------------------ all pie groups ------------------ 
-  for (var i = 0; i < 1; i++) {
+  for (var i = 0; i < 2; i++) {
     // ------------------ y values ------------------ 
     const y_elements = d3.set(data[i].map(function(item) { 
         return item.recipient; 
@@ -89,7 +89,7 @@ function vis2(india, thai, div) {
 
     const y = d3.scalePoint()
         .domain(y_elements)
-        .range([visHeight, visHeight]);
+        .range([visHeight, visHeight - (i * 125)]);
 
     // y-axis
     const yAxis = d3.axisLeft(y)
