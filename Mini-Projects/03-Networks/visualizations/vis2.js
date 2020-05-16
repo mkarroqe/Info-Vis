@@ -1,5 +1,5 @@
-function vis2(india, thai, div) {
-  const data = [india, thai];
+function vis2(india, thai, brazil, div) {
+  const data = [india, thai, brazil];
 
   const margin = {top: 40, right: 100, bottom: 100, left: 55};
   const visWidth = 1420 - margin.left - margin.right;
@@ -16,13 +16,29 @@ function vis2(india, thai, div) {
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // ------------------ x values ------------------ 
-  const x_elements = d3.set(data[0].map(function(item) { 
-      return item.donor; 
-    }
-  )).values();
+  const donors = ['United States',
+      'Japan',
+      'Germany',
+      'United Kingdom',
+      'France',
+      'Netherlands',
+      'Canada',
+      'Sweden',
+      'Norway',
+      'Italy',
+      'Denmark',
+      'Switzerland',
+      'Australia',
+      'Belgium',
+      'Spain',
+      'Saudi Arabia',
+      'Kuwait',
+      'Korea',
+      'Austria',
+      'Finland']
 
   const x = d3.scalePoint()
-      .domain(x_elements)
+      .domain(donors)
       .range([0, visWidth / 1.01]);
 
   // the radius of the pie charts
@@ -80,16 +96,18 @@ function vis2(india, thai, div) {
       .text("Donors")
 
   // ------------------ all pie groups ------------------ 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < data.length; i++) {
     // ------------------ y values ------------------ 
     const y_elements = d3.set(data[i].map(function(item) { 
         return item.recipient; 
       }
     )).values();
 
+    console.log(y_elements);
+
     const y = d3.scalePoint()
         .domain(y_elements)
-        .range([visHeight, visHeight - (i * 125)]);
+        .range([visHeight, visHeight - (i * 85)]);
 
     // y-axis
     const yAxis = d3.axisLeft(y)
@@ -114,8 +132,6 @@ function vis2(india, thai, div) {
                                 types: Array.from(purposes, ([purpose, amount]) => ({purpose, amount}))
                               })); 
 
-    console.log(amounts);
-
     const maxRadius = 10;
     const radius = d3.scaleSqrt()
         .domain([0, d3.max(amounts, d => d3.max(d.types, b => b.amount))])
@@ -128,18 +144,54 @@ function vis2(india, thai, div) {
         .innerRadius(0)
         .outerRadius(outerRadius);
 
-    const pieGroups = g.selectAll('.pieGroup')
-      .data(amounts)
-      .join('g')
-        .attr('class', 'pieGroup')
-        .attr('transform', d => `translate(${x(d.donor)},${visHeight})`);
+    const pie_height = visHeight - (i * 42.5);
+    console.log(pie_height);
 
-    pieGroups.selectAll('path')
-      .data(d => pie(d.types))
-      .join('path')
-        .attr('d', d => arc(d))
-        .attr('fill', d => color(d.data.purpose))
+    // india
+    if (i == 0) {
+      const pieGroups = g.selectAll('.pieGroup-india')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-india')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
 
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
+    }
+
+    // thailand
+    else if (i == 1) {
+      const pieGroups = g.selectAll('.pieGroup-thai')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-thai')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
+    }
+
+    // brazil
+    else if (i == 2) {
+      const pieGroups = g.selectAll('.pieGroup-brazil')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-thai')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
+    }
+    
   } // loop end
 }
 
