@@ -214,6 +214,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // korea
@@ -228,6 +229,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // poland
@@ -242,6 +244,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // south-africa
@@ -256,6 +259,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // kuwait
@@ -270,6 +274,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // chile
@@ -284,6 +289,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
     // saudi-arabia
@@ -298,6 +304,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
         .data(d => pie(d.types))
         .join('path')
           .attr('d', d => arc(d))
+          .attr('fill', d => color(d.data.purpose))
     }
 
   } // loop end
