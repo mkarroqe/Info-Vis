@@ -77,7 +77,8 @@ function vis1(data, div) {
   
   bars.selectAll("rect")
     .data(data)
-  .enter().append("rect")
+  .enter()
+    .append("rect")
     .attr("class", "annual-growth")
     .attr("x", function(d) {
       return x(Math.min(0, d.amount));
