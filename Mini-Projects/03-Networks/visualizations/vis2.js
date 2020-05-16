@@ -45,7 +45,7 @@ function vis2(data, div) {
 
   const y = d3.scalePoint()
       .domain(y_elements)
-      .range([visHeight, 0]);
+      .range([visHeight, visHeight]);
 
   // y-axis
   const yAxis = d3.axisLeft(y)
@@ -61,7 +61,7 @@ function vis2(data, div) {
 
   const color = d3.scaleOrdinal()
     .domain(purposes)
-    .range(d3.schemeTableau10);
+    .range(d3.schemeCategory10);
 
   // -------------------- legend ------------------
   svg.append("g")
@@ -100,22 +100,28 @@ function vis2(data, div) {
       .text("Donors")
   
   // -------------------- data --------------------
-  const data2 = d3.rollup(data, 
-      group => d3.sum(new Set( 
-                    group.map(g => g.amount))), 
-                    d => d.donor,
-                    d => d.coalesced_purpose_name);
+  const data2 = d3.rollup(data,
+    group => d3.sum(new Set(group.map(g => g.amount))),
+    d => d.donor,
+    d => d.coalesced_purpose_name);
+
+  console.log(data2);
 
   const amounts = Array.from(data2, 
-      ([donor, purposes]) => 
-                    ({donor: donor,
-                      purposes: Array.from(purposes, ([purpose, amount]) => (purpose, amount))}));
+                            ([donor, purposes]) => ({
+                              donor: donor,
+                              types: Array.from(purposes, ([purpose, amount]) => ({purpose, amount}))
+                            })); 
 
-  console.log(amounts)
+  console.log(amounts);
 
-  // TODO: figure out why amount values aren't coming up (will resubmit)
+  const maxRadius = 10;
+  const radius = d3.scaleSqrt()
+      .domain([0, d3.max(amounts, d => d3.max(d.types, b => b.amount))])
+      .range([0, maxRadius]);
+
   const pie = d3.pie()
-      // .value(d => d.amount);
+      .value(d => d.amount);
 
   const arc = d3.arc()
       .innerRadius(0)
@@ -125,13 +131,13 @@ function vis2(data, div) {
     .data(amounts)
     .join('g')
       .attr('class', 'pieGroup')
-      .attr('transform', d => `translate(${x(d.donor)},${visHeight / 2})`);
+      .attr('transform', d => `translate(${x(d.donor)},${visHeight})`);
 
   pieGroups.selectAll('path')
-    .data(d => pie(d.coalesced_purpose_name))
+    .data(d => pie(d.types))
     .join('path')
       .attr('d', d => arc(d))
-      .attr('fill', d => color(d.data.coalesced_purpose_name))
+      .attr('fill', d => color(d.data.purpose))
 }
 
 
