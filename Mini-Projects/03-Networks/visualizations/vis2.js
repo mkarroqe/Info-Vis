@@ -1,5 +1,15 @@
-function vis2(india, thai, brazil, div) {
-  const data = [india, thai, brazil];
+function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait, chile, saudi_arabia, div) {
+
+  const data = [india, 
+                thai, 
+                brazil,
+                colombia,
+                korea,
+                poland,
+                south_africa,
+                kuwait,
+                chile,
+                saudi_arabia];
 
   const margin = {top: 40, right: 100, bottom: 100, left: 55};
   const visWidth = 1420 - margin.left - margin.right;
@@ -182,7 +192,7 @@ function vis2(india, thai, brazil, div) {
       const pieGroups = g.selectAll('.pieGroup-brazil')
         .data(amounts)
         .join('g')
-          .attr('class', 'pieGroup-thai')
+          .attr('class', 'pieGroup-brazil')
           .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
 
       pieGroups.selectAll('path')
@@ -192,6 +202,104 @@ function vis2(india, thai, brazil, div) {
           .attr('fill', d => color(d.data.purpose))
     }
     
+    // colombia
+    else if (i == 3) {
+      const pieGroups = g.selectAll('.pieGroup-colombia')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-colombia')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // korea
+    else if (i == 4) {
+      const pieGroups = g.selectAll('.pieGroup-korea')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-korea')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // poland
+    else if (i == 5) {
+      const pieGroups = g.selectAll('.pieGroup-poland')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-poland')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // south-africa
+    else if (i == 6) {
+      const pieGroups = g.selectAll('.pieGroup-south-africa')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-south-africa')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // kuwait
+    else if (i == 7) {
+      const pieGroups = g.selectAll('.pieGroup-kuwait')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-kuwait')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // chile
+    else if (i == 8) {
+      const pieGroups = g.selectAll('.pieGroup-chile')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-chile')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
+    // saudi-arabia
+    else if (i == 9) {
+      const pieGroups = g.selectAll('.pieGroup-saudi-arabia')
+        .data(amounts)
+        .join('g')
+          .attr('class', 'pieGroup-saudi-arabia')
+          .attr('transform', d => `translate(${x(d.donor)}, ${pie_height})`);
+
+      pieGroups.selectAll('path')
+        .data(d => pie(d.types))
+        .join('path')
+          .attr('d', d => arc(d))
+    }
+
   } // loop end
 }
 
