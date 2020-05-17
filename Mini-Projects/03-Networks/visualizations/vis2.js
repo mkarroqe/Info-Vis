@@ -11,7 +11,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
                 chile,
                 saudi_arabia];
 
-  const margin = {top: 40, right: 100, bottom: 100, left: 55};
+  const margin = {top: 40, right: 100, bottom: 150, left: 75};
   const visWidth = 1420 - margin.left - margin.right;
   const visHeight = 700 - margin.top - margin.bottom;
 
@@ -86,24 +86,25 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
   // --------------------- title ------------------
   g.append('text')
       .attr('class', 'title')
-      .attr('x', visWidth / 2 - 170)
-      .attr('y', -35)
+      .attr('x', visWidth / 2 - 200)
+      .attr('y', 65)
       .attr('font-size', 20)
-      .text('Top 5 Coalesced Donation Purposes across Countries')
+      .text('Top 5 Coalesced Donation Purposes Across Countries')
 
   g.append('text')
       .attr('class', 'title')
-      .attr('x', visWidth / 2 - 725)
-      .attr('y', -20)
+      .attr('x', -130)
+      .attr('y', visHeight / 2)
       .attr('font-size', 14)
+      .attr('writing-mode', 'vertical-rl')
       .text("Recipient Countries")
 
    g.append('text')
       .attr('class', 'title')
-      .attr('x', visWidth)
-      .attr('y', 610)
+      .attr('x', visWidth / 2 - 10)
+      .attr('y', 600)
       .attr('font-size', 14)
-      .text("Donors")
+      .text("Donor Countries")
 
   // ------------------ all pie groups ------------------ 
   for (var i = 0; i < data.length; i++) {
