@@ -308,7 +308,34 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
           .attr('fill', d => color(d.data.purpose))
     }
 
+    // -------------------- grid -------------------
+    // rows
+    g.append("g")
+      .selectAll("line")
+      .data(data[i])
+      .join("line")
+        .attr("stroke", "#ede")
+        .attr("stroke-width", "0.25px")
+        .attr("x1", -10)
+        .attr("x2", visWidth + 10)
+        .attr("y1", pie_height - 20)
+        .attr("y2", pie_height - 20);
   } // loop end
+
+  // // grid cols
+  // for (var i = 0; i < 100; i++) {
+  //   g.append("g")
+  //     .selectAll("line")
+  //     .data(data[i])
+  //     .join("line")
+  //       .attr("stroke", "#ede")
+  //       .attr("stroke-width", "0.25px")
+  //       .attr("x1", -visWidth - (i * 42.5))
+  //       .attr("x2", -visWidth - (i * 42.5))
+  //       .attr("y1", 108)
+  //       .attr("y2", visHeight);
+  // } // loop end
+
 }
 
 
