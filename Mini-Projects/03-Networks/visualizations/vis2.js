@@ -72,7 +72,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
   // -------------------- legend ------------------
   svg.append("g")
     .attr("class", "legendOrdinal")
-    .attr("transform", "translate(1110, -30)")
+    .attr("transform", "translate(1150, 0)")
     .attr("font-size", 9);
 
   var legendOrdinal = d3.legendColor()
@@ -86,7 +86,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
   // --------------------- title ------------------
   g.append('text')
       .attr('class', 'title')
-      .attr('x', visWidth / 2 - 200)
+      .attr('x', visWidth / 2 - 190)
       .attr('y', 65)
       .attr('font-size', 20)
       .text('Top 5 Coalesced Donation Purposes Across Countries')
@@ -102,7 +102,7 @@ function vis2(india, thai, brazil, colombia, korea, poland, south_africa, kuwait
    g.append('text')
       .attr('class', 'title')
       .attr('x', visWidth / 2 - 10)
-      .attr('y', 600)
+      .attr('y', 580)
       .attr('font-size', 14)
       .text("Donor Countries")
 
