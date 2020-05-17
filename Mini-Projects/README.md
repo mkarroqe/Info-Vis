@@ -7,7 +7,7 @@ Class Github and information can be found [here](https://github.com/nyuvis).
 | - | - | :-: |
 | 1 | [Geographical](https://github.com/mkarroqe/Info-Vis/tree/master/Mini-Projects/01-Graph-Design-Geo) | ✅ |
 | 2 | [Temporal](https://github.com/mkarroqe/Info-Vis/tree/master/Mini-Projects/02-Temporal) | ✅ |
-| 3 | [Networks](https://github.com/mkarroqe/Info-Vis/tree/master/Mini-Projects/03-Networks) | - |
+| 3 | [Networks](https://github.com/mkarroqe/Info-Vis/tree/master/Mini-Projects/03-Networks) | ✅ |
 
 # Assignment
 In this assignment, you have to design visualization solutions for questions related to the
